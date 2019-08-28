@@ -15,6 +15,7 @@ import com.bumptech.glide.Glide;
 import java.util.ArrayList;
 import java.util.List;
 
+import muchbeer.raum.com.gcertificate.data.models.CoinModel;
 import muchbeer.raum.com.gcertificationproject1.R;
 
 public class MyCryptoAdapter extends RecyclerView.Adapter<MyCryptoAdapter.CoinViewHolder> {

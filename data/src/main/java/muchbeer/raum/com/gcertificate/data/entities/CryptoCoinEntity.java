@@ -1,51 +1,101 @@
-package muchbeer.raum.com.gcertificationproject1.entities;
+package muchbeer.raum.com.gcertificate.data.entities;
+
+import androidx.annotation.NonNull;
+import androidx.room.ColumnInfo;
+
+import androidx.room.Entity;
+import androidx.room.Ignore;
+import androidx.room.Index;
+import androidx.room.PrimaryKey;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class CryptoCoinEntity  {
+@JsonIgnoreProperties(ignoreUnknown = true)
+@Entity(tableName = "coins",
+        indices = {@Index("symbol"),
+                @Index("total_supply"),
+                @Index({"id","symbol"})})
+public class CryptoCoinEntity {
+
+
+
 
     //We are going to get a list of these entities from our api call - this entity is immutable
     @JsonProperty("id")
+    @ColumnInfo(name="id")
     private String id;
+
     @JsonProperty("name")
+    @ColumnInfo(name="n")
     private String name;
+
+
     @JsonProperty("symbol")
+    @PrimaryKey
+    @NonNull
     private String symbol;
+
+    @ColumnInfo(name="rank")
     @JsonProperty("rank")
     private String rank;
+
+
     @JsonProperty("price_usd")
     private String priceUsd;
     @JsonProperty("price_btc")
     private String priceBtc;
+
+
     @JsonProperty("24h_volume_usd")
-    private String _24hVolumeUsd;
+       private String _24hVolumeUsd;
+
+
     @JsonProperty("market_cap_usd")
-    private String marketCapUsd;
+        private String marketCapUsd;
+
     @JsonProperty("available_supply")
-    private String availableSupply;
+        private String availableSupply;
+
+    @ColumnInfo(name="total_supply")
     @JsonProperty("total_supply")
     private String totalSupply;
+
+    @ColumnInfo(name="percent_change_1h")
     @JsonProperty("percent_change_1h")
     private String percentChange1h;
+
     @JsonProperty("percent_change_24h")
+    @Ignore
     private String percentChange24h;
+
     @JsonProperty("percent_change_7d")
+    @Ignore
     private String percentChange7d;
+
+
     @JsonProperty("last_updated")
+    @Ignore
     private String lastUpdated;
 
     @JsonProperty("max_supply")
     private String max_supply;
 
     @JsonProperty("max_supply")
-    public String getMaxSupply() {
+    public String getMax_supply() {
         return max_supply;
     }
+
     @JsonProperty("max_supply")
-    public void setMaxSupply(String max_supply) {
+    public void setMax_supply(String max_supply) {
         this.max_supply = max_supply;
     }
+
+
+
+
+
     //Solving the late error
 /*    @JsonIgnore
     private String max_supply;
