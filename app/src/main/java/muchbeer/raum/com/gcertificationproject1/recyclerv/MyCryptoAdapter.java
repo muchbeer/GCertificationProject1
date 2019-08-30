@@ -25,6 +25,7 @@ public class MyCryptoAdapter extends RecyclerView.Adapter<MyCryptoAdapter.CoinVi
     public final String STR_TEMPLATE_PRICE = "%s$\t\t\t\t\t\t24H Volume:\t\t\t%s$";
     private final Handler mHandler = new Handler();
 
+    private OnItemClickLister lister;
     @NonNull
     @Override
     public MyCryptoAdapter.CoinViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -65,6 +66,27 @@ public class MyCryptoAdapter extends RecyclerView.Adapter<MyCryptoAdapter.CoinVi
             tvNameAndSymbol = itemView.findViewById(R.id.tvNameAndSymbol);
             tvPriceAndVolume = itemView.findViewById(R.id.tvPriceAndVolume);
             ivIcon = itemView.findViewById(R.id.ivIcon);
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    int position =getAdapterPosition();
+
+                    if(lister !=null && position != RecyclerView.NO_POSITION) {
+                            lister.onItemClick(mItems.get(position));
+                    }
+                }
+            });
         }
+
+
     }
+    public interface OnItemClickLister {
+        void onItemClick(CoinModel getCoinItem);
+    }
+
+    public void setOnItemItemClickListener(OnItemClickLister lister) {
+this.lister = lister;
+    }
+
 }

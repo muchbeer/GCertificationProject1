@@ -110,6 +110,12 @@ public class MainActivity extends AppCompatActivity implements MainScreen {
     public void updateData(List<CoinModel> data) {
         mLastFetchedDataTimeStamp=System.currentTimeMillis();
         mAdapter.setItems(data);
+        mAdapter.setOnItemItemClickListener(new MyCryptoAdapter.OnItemClickLister() {
+            @Override
+            public void onItemClick(CoinModel getCoinItem) {
+                Toast.makeText(getApplicationContext(), "The The first Coin name is: "+ getCoinItem.name, Toast.LENGTH_SHORT).show();
+            }
+        });
         mSwipeRefreshLayout.setRefreshing(false);
 
     }
